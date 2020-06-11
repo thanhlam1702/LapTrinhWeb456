@@ -18,6 +18,7 @@ namespace NguyenThanhLam_lab456.Controllers
         {
             _dbContext = new ApplicationDbContext();
         }
+
         [HttpPost]
         public IHttpActionResult Follow(FollowingDto followingDto)
         {
