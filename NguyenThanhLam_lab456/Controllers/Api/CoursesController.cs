@@ -30,18 +30,18 @@ namespace NguyenThanhLam_lab456.Controllers.Api
 
             return Ok();
         }
+        [HttpPost]
+        public IHttpActionResult UnCancel(int id)
+        {
+            var userId = User.Identity.GetUserId();
+            var course = _dbContext.Courses.Single(c => c.Id == id && c.LecturerId == userId);
+            if (course.IsCanceled == false)
+                return NotFound();
+            course.IsCanceled = false;
+            _dbContext.SaveChanges();
+            
+            return Ok();
+        }
 
-        //[HttpDelete]
-        //public IHttpActionResult UnCancel(int id)
-        //{
-        //    var userId = User.Identity.GetUserId();
-        //    var course = _dbContext.Courses.Single(c => c.Id == id && c.LecturerId == userId);
-        //    if (!course.IsCanceled)
-        //        return NotFound();
-        //    course.IsCanceled = false;
-        //    _dbContext.SaveChanges();
-
-        //    return Ok();
-        //}
     }
 }
